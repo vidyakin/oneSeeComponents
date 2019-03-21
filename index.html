@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>1C Components</title>
+    <style>
+        BODY {
+            margin: 10px;
+            padding: 0;
+            color: #4b4b4b;
+            cursor: default;
+            font-family: Arial;
+            font-size: 10pt;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+            -webkit-touch-callout: none;
+            overflow: auto;
+            -ms-user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+        }
+        #app {
+            width: 100%; height: 100%;
+        }
+        
+    </style>
+    <link rel="stylesheet" href="textField.css">
+    <script src="vue.js"></script>
+</head>
+<body>
+    <template id="oc_textField">
+        <div class="oc_textField" style="display: flex; align-items: center;" data-object_type="guid1" data-object_id="guid2">
+            <div class="oc_label" style="width: 100px;">
+                <div class="staticText">
+                    <label for="form1_f1" class="ellipsis">{{label}}</label>
+                </div>
+            </div>
+            <div id="form1_f1_div" style="width: 500px;">
+                <label title="Кадровые документы\Графики отпусков" class="field" v-bind:class="{fieldNoBorder:isActive, active:isActive}" >
+                    <div class="inlinesField">
+                        <div class="inlines"></div>
+                    </div>
+                    <div class="inputsField">
+                        <div class="inputs">
+                            <!-- <span class="inputHint" style="height: 100%;" data-content="Проект"></span> -->
+                            <input type="text" ref="realText"
+                                   :value="value" @input='update()'
+                                   id="form1_f1" 
+                                   class="editInput" 
+                                   @focus="setActive" @blur="setNotActive" 
+                                   :placeholder="placeholder"
+                            >
+                        </div>
+                    </div>
+                    <div class="btnsField">
+                        <div class="btns">
+                            <span id="form1_f1_DLB" class="btnBox btn iDLB" title="Выбрать из списка" tabindex="0"><i></i></span>
+                            <span id="form1_f1_CB" class="btnBox btn iCB" title="Выбрать (F4)" tabindex="0"><i></i></span>
+                            <span id="form1_f1_OB" class="btnBox btn iOB" title="Открыть (Ctrl+Shift+F4)" tabindex="0"><i></i></span>
+                        </div>
+                    </div>
+                </label>
+                <div class="inputInfo" v-show='show_hint'>{{hint}}</div>
+            </div>
+        </div>        
+    </template>
+
+    <div id="app">
+        <h1>{{app_name}}</h1>
+        <text-field v-model='form.project' label="Проектик" placeholder="Введите проект" hint="проект нужен для разделения деятельности по проектам" show_hint='true'></text-field>
+        <text-field v-model='form.program' label="Программа" placeholder="Введите программу" hint="Программа нужна для разделения деятельности по программам"></text-field>
+
+        <div class="full" style="
+                border: 1px solid darkgray;
+                margin: 10px 0;
+                background-color: antiquewhite;
+                padding: 0 20px;">
+            <p>
+                Проект:    <span style="font-weight: bold">{{form.project}}</span>
+            </p>
+            <p>
+                Программа: <span style="font-weight: bold">{{form.program}}</span>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        Vue.component('TextField', {
+            inheritAttrs: false,
+            template: "#oc_textField",
+            props: ['value','show_hint','hint','label','placeholder'],
+            data: () => {
+                return {
+                    isActive: false
+                }
+            },
+            methods: {
+                setActive() {
+                    this.isActive = true;
+                },
+                setNotActive() {
+                    this.isActive = false;
+                    this.$emit('input', this.$refs.realText.value)
+                },
+                update () {
+                    this.$emit('input', this.$refs.realText.value)
+                }
+            },
+            computed: {
+                inputListeners: function() {
+                    var vm = this;
+                    return Object.assign({}, 
+                    this.$listeners,
+                    {
+                        input: function(e) {
+                            vm.$emit('input', e.target.value)
+                        }
+                    })
+                }
+                // classes: function() {
+                //     return 'field ' + this.active == true ? 'fieldNoBorder active': '';
+                // }
+            }
+        });
+
+        var App = new Vue({
+            el: "#app",
+            data: () => {
+                return {
+                    app_name: "Приложение как бы",
+                    form: {
+                        project: "",
+                        program: ""
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

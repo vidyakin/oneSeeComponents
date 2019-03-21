@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="devWindow.css">
+	<script src="split.min.js"></script>
+	<title>Development Window Editor</title>
+</head>
+<body>
+	<div id="app">
+		<div class="dev-window">
+			<div id="top-part">
+				<div id="tree">Element tree</div>
+				<div id="settings">
+					<div class="props">Props</div>
+					<div class="commands">Commands</div>
+					<div class="params">Params</div>
+				</div>
+			</div>
+			<div id="visual-part">
+				<div class="render">Window here</div>
+				<div class="server-script">server scripts</div>
+				<div class="client-script">client scripts</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		Split(['#top-part', '#visual-part'], {
+			direction: 'vertical',
+			sizes: [50, 50],
+			minSize: [200, 200]
+		});
+		Split(['#tree', '#settings'], {
+			direction: 'horizontal',
+			sizes: [50, 50],
+			minSize: [200, 200]
+		})
+	</script>
+</body>
+</html>

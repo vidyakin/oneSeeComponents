@@ -1,0 +1,191 @@
+/* ПОЛЯ ВВОДА */
+.field {
+    display: table;
+    /* position: absolute; */
+    width: 100%;
+    height: 25px;
+    line-height: 1.2;
+    overflow: hidden;
+    white-space: nowrap;
+    z-index: 0;
+}
+a, [tabindex] {
+    outline: medium none;
+}
+.oc_textField {
+    margin-top: 10px;
+}
+.oc_label {
+    align-self: flex-start;
+    padding-top: 5px;
+}
+.inlinesField, .inputsField, .btnsField {
+    display: table-cell;
+    position: relative;
+    height: 100%;
+    vertical-align: top;
+}
+.inlines::before, .inputs::before {
+    content: '';
+    display: inline-block;
+    position: relative;
+    width: 0;
+    height: 100%;
+    vertical-align: middle;
+}
+.inlinesField, .inlines, .inputsField, .btnsField, .inputs, .btns, .fieldLine .btns, .editInput, .editArea {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+input, textarea {
+    -ms-user-select: text;
+    -moz-user-select: text;
+    -webkit-user-select: text;
+}
+input:focus, textarea:focus {
+    outline: medium none;
+}
+.field.active, .field.active {
+    outline: 2px solid #facc1f;
+}
+.inlines, .inputs {
+    display: block;
+    background-color: #fff;
+    border-style: solid;
+    border-color: #a0a0a0;
+    position: relative;
+    height: 100%;
+}
+.fieldNoBorder .inlines, .fieldNoBorder .inputs, .fieldNoBorder .btns, .fieldNoBorder .inlines::after, .fieldNoBorder .inputs::after, .fieldNoBorder .btns::after {
+    border-color: transparent !important;
+}
+.inputsField {
+    width: 100%;
+}
+.inputs {
+    border-width: 1px 1px 1px 0;
+    color: #333;
+    font-family: Arial;
+    font-size: 1em;
+    padding-right: 3px;
+    vertical-align: middle;
+    white-space: nowrap;
+    cursor: text;
+}
+.inlines {
+    border-width: 1px 0 1px 1px;
+    border-radius: 3px 0 0 3px;
+    padding-left: .3em;
+    line-height: 0;
+}
+.editInput, .inputHint, .inputHint::before {
+    font: inherit;
+    text-decoration: inherit;
+    text-align: left;
+}
+.editInput {
+    overflow: hidden;
+    height: 1.2em;
+}
+.editInput, .editArea {
+    display: inline-block;
+    color: inherit;
+    border: none;
+    background: transparent;
+    position: relative;
+    width: 100%;
+    vertical-align: middle;
+}
+.editInput::placeholder {
+    color: #c8c8c8;
+}
+.inputHint::before, .inputHint::after {
+    display: inline-block;
+    vertical-align: middle;
+}
+.inputHint::before {
+    content: attr(data-content);
+    color: #c8c8c8;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-decoration-color: #c8c8c8 !important;
+    -moz-text-decoration-color: #c8c8c8 !important;
+}
+.inputHint::after {
+    content: '';
+    display: inline-block;
+    font: 0;
+    width: 0;
+    height: 100%;
+}
+.inputInfo {
+    font-size: 9pt;
+    color: #afafaf;
+    margin: 5px 0 0 5px;
+}
+.btns {
+    padding: 0;
+    line-height: 0;
+    background-color: #fff;
+    border-width: 1px 1px 1px 0;
+    border-radius: 1px 3px 3px 1px;
+    margin-left: -1px;
+    display: flex;
+    border-style: solid;
+    border-color: #a0a0a0;
+    position: relative;
+    height: 100%;
+}
+.btn {
+    /* display: inline-block; */
+    border-left: 1px solid #a0a0a0;
+    border-radius: 0 2px 2px 0;
+    position: relative;
+    height: 100%;
+    width: 23px;
+    vertical-align: middle;
+}
+.btn:hover, .iSB i:hover, .btn:active, .iSB i:active {
+    background-color: #f2f2f2;
+}
+.btn i {
+    display: inline-block;
+    border-width: 0 0px 0 3px;
+    border-style: solid;
+    border-color: transparent;
+    background-image: url(edtButtons.png);
+    background-repeat: no-repeat;
+    position: relative;
+    width: 16px;
+    height: 100%;
+    vertical-align: middle;
+}
+.iDLB i, .iCLB i {
+    background-position: 62.5% center;
+}
+.iCB i {
+    background-position: 87.5% center;
+}
+.iOB i {
+    background-position: 50% center;
+}
+/* метка */
+/* .staticText::before {
+    content: '';
+    display: inline-block;
+    font-size: 0;
+    width: 0;
+    height: 100%;
+    vertical-align: inherit;
+} */
+.staticText div, .staticText label {
+    display: inline-block;
+    max-width: 100%;
+    text-decoration: inherit;
+}
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
